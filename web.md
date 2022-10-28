@@ -33,3 +33,6 @@
         - IP를 아파트에 비유하면 PORT는 동 호수
         - TCP Segment에 담기는 정보
         - 동시에 진행되는 상황에서 애플리케이션을 구분해줌
+- `Transport :: UDP(User Datagram Protocol ; 사용자 데이터그램 프로토콜)`
+    - IP와 거의 같고 + PORT, checksum
+    - 데이터 전달 및 순서가 보장되지 않지만 단순하고 빠름
