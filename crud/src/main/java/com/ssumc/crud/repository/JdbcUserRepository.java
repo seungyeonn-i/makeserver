@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @Slf4j
 @Repository
-public class JdbcUserRepository implements UserRepository{
+public class JdbcUserRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -28,8 +28,8 @@ public class JdbcUserRepository implements UserRepository{
 
 
 
-    @Override
-    public User save(User user) {
+
+    public void save(User user) {
         SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
         jdbcInsert.withTableName("user").usingGeneratedKeyColumns("userId");
 
@@ -38,12 +38,11 @@ public class JdbcUserRepository implements UserRepository{
 
         Number key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameters));
         user.setUserId(key.intValue());
-        return user;
     }
 
-    public Optional<User> findById(int userId) {
+    public User findById(int userId) {
         List<User> result = jdbcTemplate.query("select * from user where id = ?", userRowMapper(), userId);
-        return result.stream().findAny();
+        return result.get(userId);
     }
 
 
