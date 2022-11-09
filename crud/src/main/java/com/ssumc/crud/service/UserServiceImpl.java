@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-@Transactional
+//@Transactional
 @Service
 public class UserServiceImpl implements  UserService {
 

@@ -2,11 +2,9 @@ package com.ssumc.crud.repository;
 
 import com.ssumc.crud.domain.User;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
@@ -18,7 +16,7 @@ import java.util.Optional;
 
 @Slf4j
 @Repository
-public class JdbcUserRepository {
+public class JdbcUserRepository implements UserRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -29,20 +27,22 @@ public class JdbcUserRepository {
 
 
 
-    public void save(User user) {
+    public User save(User user) {
         SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
-        jdbcInsert.withTableName("user").usingGeneratedKeyColumns("userId");
+        jdbcInsert.withTableName("User").usingGeneratedKeyColumns("userId");
 
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("name", user.getUserName());
 
         Number key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameters));
         user.setUserId(key.intValue());
+
+        return user;
     }
 
-    public User findById(int userId) {
-        List<User> result = jdbcTemplate.query("select * from user where id = ?", userRowMapper(), userId);
-        return result.get(userId);
+    public Optional<User> findById(int userId) {
+        List<User> result = jdbcTemplate.query("select * from User where id = ?", userRowMapper(), userId);
+        return Optional.ofNullable(result.get(userId));
     }
 
 
