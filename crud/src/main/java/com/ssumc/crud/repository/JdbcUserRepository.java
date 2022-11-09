@@ -29,10 +29,10 @@ public class JdbcUserRepository implements UserRepository {
 
     public User save(User user) {
         SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
-        jdbcInsert.withTableName("User").usingGeneratedKeyColumns("userId");
+        jdbcInsert.withTableName("userTest").usingGeneratedKeyColumns("userId");
 
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("name", user.getUserName());
+        parameters.put("userName", user.getUserName());
 
         Number key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameters));
         user.setUserId(key.intValue());
@@ -41,14 +41,14 @@ public class JdbcUserRepository implements UserRepository {
     }
 
     public Optional<User> findById(int userId) {
-        List<User> result = jdbcTemplate.query("select * from User where id = ?", userRowMapper(), userId);
+        List<User> result = jdbcTemplate.query("select * from UserTest where id = ?", userRowMapper(), userId);
         return Optional.ofNullable(result.get(userId));
     }
 
 
     public List<User> findAll() {
 
-        return jdbcTemplate.query("select * from user", userRowMapper());
+        return jdbcTemplate.query("select * from userTest", userRowMapper());
 
 
     }
