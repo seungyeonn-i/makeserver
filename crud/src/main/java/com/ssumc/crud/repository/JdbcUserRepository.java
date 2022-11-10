@@ -30,7 +30,7 @@ public class JdbcUserRepository implements UserRepository {
     public User save(User user) {
         SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
         jdbcInsert.withTableName("userTest").usingGeneratedKeyColumns("userId");
-// UserTest가 맞는데 그거 하면 왜 안됨?
+        // UserTest가 맞는데 그거 하면 왜 안됨?
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("userName", user.getUserName());
 
