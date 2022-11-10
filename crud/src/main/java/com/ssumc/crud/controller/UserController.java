@@ -33,7 +33,9 @@ public class UserController {
     public String create(UserForm form) {
         User user = new User();
         user.setUserName(form.getUserName());
-
+        user.setPassword(form.getPassword());
+        user.setUserPhone(form.getUserPhone());
+        user.setUserEmail(form.getUserEmail());
         userService.join(user);
         return "redirect:/";
     }

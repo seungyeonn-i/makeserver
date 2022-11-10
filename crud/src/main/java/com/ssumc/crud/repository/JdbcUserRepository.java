@@ -34,7 +34,12 @@ public class JdbcUserRepository implements UserRepository {
         jdbcInsert.withTableName("userTest").usingGeneratedKeyColumns("userId");
         // UserTest가 맞는데 그거 하면 왜 안됨?
         Map<String, Object> parameters = new HashMap<>();
+
         parameters.put("userName", user.getUserName());
+        parameters.put("userEmail", user.getUserEmail());
+        parameters.put("password", user.getPassword());
+        parameters.put("userPhone", user.getUserPhone());
+
 
         Number key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameters));
         user.setUserId(key.intValue());
