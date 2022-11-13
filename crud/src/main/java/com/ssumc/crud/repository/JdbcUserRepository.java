@@ -64,8 +64,9 @@ public class JdbcUserRepository implements UserRepository {
         return (rs, rowNum) -> {
                 User user = new User();
                 user.setUserName(rs.getString("userName"));
-                user.setUserEmail(rs.getString("aaa@aaa.com"));
-                user.setUserPhone(rs.getString("010-3423-2342"));
+                user.setUserEmail(rs.getString("userEmail"));
+                user.setUserPhone(rs.getString("userPhone"));
+                user.setUserId(rs.getInt("userId"));
 //            user.setUserStatus(rs.getC);
 //            user.setUserGrade(rs.getString("1"));
                 return user;
