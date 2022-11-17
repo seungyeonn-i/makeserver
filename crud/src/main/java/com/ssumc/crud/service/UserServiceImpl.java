@@ -25,7 +25,6 @@ public class UserServiceImpl implements  UserService {
     }
 
 
-
     public int join(User user) {
         userRepository.save(user);
         return user.getUserId();

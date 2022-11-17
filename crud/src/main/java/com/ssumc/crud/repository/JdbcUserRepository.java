@@ -57,7 +57,12 @@ public class JdbcUserRepository implements UserRepository {
 
         return jdbcTemplate.query("select * from userTest", userRowMapper());
 
+    }
 
+    public Optional<User> findByUserEmail(String userEmail) {
+        return findAll().stream()
+                .filter(m -> m.getUserEmail().equals(userEmail))
+                .findFirst();
     }
 
     private RowMapper<User>userRowMapper() {
