@@ -1,6 +1,7 @@
 package com.ssumc.crud.repository;
 
-import com.ssumc.crud.domain.User;
+import com.ssumc.crud.domain.repository.MemoryUserRepository;
+import com.ssumc.crud.domain.user.User;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 

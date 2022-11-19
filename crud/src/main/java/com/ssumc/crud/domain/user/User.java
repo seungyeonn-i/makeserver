@@ -1,4 +1,4 @@
-package com.ssumc.crud.domain;
+package com.ssumc.crud.domain.user;
 
 import lombok.Getter;
 import lombok.Setter;

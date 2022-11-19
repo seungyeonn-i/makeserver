@@ -1,6 +1,6 @@
 //package com.ssumc.crud.repository;
 //
-//import com.ssumc.crud.domain.User;
+//import com.ssumc.crud.user.User;
 //import org.springframework.jdbc.core.RowMapper;
 //
 //import java.sql.ResultSet;

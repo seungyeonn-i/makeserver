@@ -1,10 +1,9 @@
 package com.ssumc.crud;
 
-import com.ssumc.crud.repository.JdbcUserRepository;
-import com.ssumc.crud.repository.MemoryUserRepository;
-import com.ssumc.crud.repository.UserRepository;
-import com.ssumc.crud.service.UserService;
-import com.ssumc.crud.service.UserServiceImpl;
+import com.ssumc.crud.domain.user.JdbcUserRepository;
+import com.ssumc.crud.domain.user.UserRepository;
+import com.ssumc.crud.domain.user.UserService;
+import com.ssumc.crud.domain.user.UserServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

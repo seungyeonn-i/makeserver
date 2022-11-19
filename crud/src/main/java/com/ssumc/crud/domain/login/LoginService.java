@@ -1,8 +1,7 @@
-package com.ssumc.crud.login;
+package com.ssumc.crud.domain.login;
 
-import com.ssumc.crud.domain.User;
-import com.ssumc.crud.repository.JdbcUserRepository;
-import com.ssumc.crud.repository.UserRepository;
+import com.ssumc.crud.domain.user.User;
+import com.ssumc.crud.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

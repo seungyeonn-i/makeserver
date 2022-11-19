@@ -1,6 +1,6 @@
-package com.ssumc.crud.service;
+package com.ssumc.crud.domain.user;
 
-import com.ssumc.crud.domain.User;
+import com.ssumc.crud.domain.user.User;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,7 +1,9 @@
 package com.ssumc.crud.service;
 
-import com.ssumc.crud.domain.User;
-import com.ssumc.crud.repository.MemoryUserRepository;
+import com.ssumc.crud.domain.user.User;
+import com.ssumc.crud.domain.user.UserService;
+import com.ssumc.crud.domain.user.UserServiceImpl;
+import com.ssumc.crud.domain.repository.MemoryUserRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

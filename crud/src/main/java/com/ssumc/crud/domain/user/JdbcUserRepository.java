@@ -1,6 +1,5 @@
-package com.ssumc.crud.repository;
+package com.ssumc.crud.domain.user;
 
-import com.ssumc.crud.domain.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;

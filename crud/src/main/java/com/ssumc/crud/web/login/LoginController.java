@@ -1,6 +1,8 @@
-package com.ssumc.crud.login;
+package com.ssumc.crud.web.login;
 
-import com.ssumc.crud.domain.User;
+import com.ssumc.crud.domain.login.LoginService;
+import com.ssumc.crud.domain.user.User;
+import com.ssumc.crud.web.login.LoginForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;

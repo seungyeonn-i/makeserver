@@ -1,4 +1,4 @@
-package com.ssumc.crud.login;
+package com.ssumc.crud.web.login;
 
 import lombok.Data;
 

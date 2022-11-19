@@ -1,6 +1,6 @@
 //package com.ssumc.crud.repository;
 //
-//import com.ssumc.crud.domain.User;
+//import com.ssumc.crud.user.User;
 //import org.springframework.context.annotation.Primary;
 //
 //import javax.persistence.EntityManager;

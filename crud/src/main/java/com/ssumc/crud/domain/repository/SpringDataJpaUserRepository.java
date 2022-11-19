@@ -1,6 +1,6 @@
 //package com.ssumc.crud.repository;
 //
-//import com.ssumc.crud.domain.User;
+//import com.ssumc.crud.user.User;
 //import org.springframework.data.jpa.repository.JpaRepository;
 //
 //import java.util.Optional;

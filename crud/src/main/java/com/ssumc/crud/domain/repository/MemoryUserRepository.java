@@ -1,6 +1,7 @@
-package com.ssumc.crud.repository;
+package com.ssumc.crud.domain.repository;
 
-import com.ssumc.crud.domain.User;
+import com.ssumc.crud.domain.user.User;
+import com.ssumc.crud.domain.user.UserRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
