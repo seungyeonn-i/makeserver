@@ -1,4 +1,4 @@
-package com.ssumc.crud.controller;
+package com.ssumc.crud.web.user;
 
 import com.ssumc.crud.domain.user.User;
 import com.ssumc.crud.domain.user.UserService;

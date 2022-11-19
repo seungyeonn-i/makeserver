@@ -1,4 +1,4 @@
-package com.ssumc.crud.controller;
+package com.ssumc.crud.web.user;
 
 import lombok.Getter;
 import lombok.Setter;
