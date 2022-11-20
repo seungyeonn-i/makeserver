@@ -1,7 +1,9 @@
 package com.ssumc.crud.web.login;
 
+import com.ssumc.crud.SessionConst;
 import com.ssumc.crud.domain.login.LoginService;
 import com.ssumc.crud.domain.user.User;
+import com.ssumc.crud.session.SessionManager;
 import com.ssumc.crud.web.login.LoginForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -11,13 +13,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequiredArgsConstructor
 public class LoginController {
 
     private final LoginService loginService;
+    private final SessionManager sessionManager;
 
     @GetMapping("/login")
     public String loginForm(@ModelAttribute("loginForm") LoginForm loginForm) {
@@ -25,7 +30,7 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute LoginForm form, BindingResult result, HttpServletResponse response) {
+    public String login(@ModelAttribute LoginForm form, BindingResult result, HttpServletRequest request) {
 
         if (result.hasErrors()) {
             return "login/loginForm";
@@ -37,9 +42,14 @@ public class LoginController {
             return "login/loginForm";
         }
 
-        Cookie idCookie = new Cookie("userEmail", String.valueOf(loginUser.getUserId()));
-        response.addCookie(idCookie);
+        HttpSession session = request.getSession();
+        session.setAttribute(SessionConst.LOGIN_MEMBER, loginUser);
 
-        return "redirect://";
+        return "redirect:/";
+    }
+
+    @PostMapping("/logout")
+    public String logout(HttpServletRequest request) {
+        Httpseesion
     }
 }
