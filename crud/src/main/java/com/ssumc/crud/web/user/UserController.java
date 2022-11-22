@@ -31,12 +31,14 @@ public class UserController {
     }
 
     @GetMapping(value = "/users/new")
-    public String createForm() {
+    public String createForm(Model model) {
+        model.addAttribute("user", new UserForm());
+
         return "users/createUserForm";
     }
 
-    @PostMapping(value = "users/new")
-    public String create(@Validated @ModelAttribute UserForm form, BindingResult result, RedirectAttributes redirectAttributes) {
+    @PostMapping(value = "/users/new")
+    public String create(@Validated @ModelAttribute("user") UserForm form, BindingResult result,RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
             log.info("errors={}", result);
             return "users/createUserForm";
@@ -46,14 +48,15 @@ public class UserController {
         user.setUserName(form.getUserName());
         user.setPassword(form.getPassword());
         user.setUserPhone(form.getUserPhone());
-        user.setUserEmail(form.getUserEmail());
-        int joinUser = userService.join(user);
 
-//        redirectAttributes.addAttribute("userId", joinUser);
+        user.setUserEmail(form.getUserEmail());
+        userService.join(user);
+
+        redirectAttributes.addAttribute("user", user);
         return "redirect:/";
     }
 
-    @GetMapping(value = "users")
+    @GetMapping(value = "/users")
     public String list(Model model) {
         List<User> users = userService.findUsers();
         model.addAttribute("users", users);
@@ -61,17 +64,5 @@ public class UserController {
     }
 
 
-    @PostMapping("/join")
-    public Object userJoin() {
-        log.debug("/userJoin start");
-        List<User> userList = userService.findUsers();
-        log.debug(userList.toString());
 
-        User user = new User();
-
-        userService.join(user);
-
-        return userList;
-
-    }
 }
