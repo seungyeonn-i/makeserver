@@ -50,6 +50,10 @@ public class LoginController {
 
     @PostMapping("/logout")
     public String logout(HttpServletRequest request) {
-        Httpseesion
+        HttpSession session = request.getSession(false); // 불필요한 세션 만들지 않음
+        if (session != null) { // 로그인 되어있는 경우
+            session.invalidate();
+        }
+        return "redirect:/";
     }
 }

@@ -22,8 +22,17 @@ public class UserServiceImpl implements UserService {
 
 
     public int join(User user) {
-        userRepository.save(user);
-        return user.getUserId();
+
+        if (validatePasswordUser(user)) {
+            userRepository.save(user);
+            return user.getUserId();
+        }
+        return -1;
+
+    }
+
+    private boolean validatePasswordUser(User user) {
+        return user.getPassword().contains("!");
     }
 
     public  List<User> findUsers() {

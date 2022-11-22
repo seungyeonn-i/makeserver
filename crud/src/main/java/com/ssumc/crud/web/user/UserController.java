@@ -3,17 +3,24 @@ package com.ssumc.crud.web.user;
 import com.ssumc.crud.domain.user.User;
 import com.ssumc.crud.domain.user.UserService;
 import com.ssumc.crud.domain.user.UserServiceImpl;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
 @Slf4j
 @Controller
+@RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
@@ -29,13 +36,20 @@ public class UserController {
     }
 
     @PostMapping(value = "users/new")
-    public String create(UserForm form) {
+    public String create(@Validated @ModelAttribute UserForm form, BindingResult result, RedirectAttributes redirectAttributes) {
+        if (result.hasErrors()) {
+            log.info("errors={}", result);
+            return "users/createUserForm";
+        }
+
         User user = new User();
         user.setUserName(form.getUserName());
         user.setPassword(form.getPassword());
         user.setUserPhone(form.getUserPhone());
         user.setUserEmail(form.getUserEmail());
-        userService.join(user);
+        int joinUser = userService.join(user);
+
+//        redirectAttributes.addAttribute("userId", joinUser);
         return "redirect:/";
     }
 
@@ -54,13 +68,7 @@ public class UserController {
         log.debug(userList.toString());
 
         User user = new User();
-        user.setUserEmail("aaa");
-        user.setUserPhone("3234");
-        user.setUserName("seungo");
-        user.setPassword("hello");
 
-        user.setUserStatus('1');
-        user.setUserGrade('1');
         userService.join(user);
 
         return userList;
