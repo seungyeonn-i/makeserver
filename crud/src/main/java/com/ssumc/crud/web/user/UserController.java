@@ -52,7 +52,7 @@ public class UserController {
         user.setUserEmail(form.getUserEmail());
         userService.join(user);
 
-        redirectAttributes.addAttribute("user", user);
+//        redirectAttributes.addAttribute("user", user);
         return "redirect:/";
     }
 
