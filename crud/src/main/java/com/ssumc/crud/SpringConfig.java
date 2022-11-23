@@ -1,5 +1,6 @@
 package com.ssumc.crud;
 
+import com.ssumc.crud.domain.login.LoginService;
 import com.ssumc.crud.domain.user.JdbcUserRepository;
 import com.ssumc.crud.domain.user.UserRepository;
 import com.ssumc.crud.domain.user.UserService;
@@ -33,4 +34,5 @@ public class SpringConfig {
 ////        return new MemoryUserRepository();
 //        return new JpaUserRepository(em);
 //    }
+
 }

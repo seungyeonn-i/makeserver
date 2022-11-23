@@ -15,11 +15,11 @@ public class TestDataInit {
     @PostConstruct
     public void init() {
 
-        User user = new User();
-        user.setUserEmail("aaa@aaa.com");
-        user.setPassword("test!");
-
-        userRepository.save(user);
+//        User user = new User();
+//        user.setUserEmail("aaa@aaa.com");
+//        user.setPassword("test!");
+//
+//        userRepository.save(user);
     }
 
 

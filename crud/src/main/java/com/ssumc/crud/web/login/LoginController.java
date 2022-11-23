@@ -6,6 +6,7 @@ import com.ssumc.crud.domain.user.User;
 import com.ssumc.crud.session.SessionManager;
 import com.ssumc.crud.web.login.LoginForm;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class LoginController {
@@ -37,6 +39,7 @@ public class LoginController {
         }
 
         User loginUser = loginService.login(form.getLoginEmail(), form.getPassword());
+        log.info("@here");
         if (loginUser == null) {
             result.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다");
             return "login/loginForm";
