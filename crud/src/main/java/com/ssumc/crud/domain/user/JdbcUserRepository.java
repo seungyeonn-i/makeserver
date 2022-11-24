@@ -25,9 +25,6 @@ public class JdbcUserRepository implements UserRepository {
 
 
 
-
-
-
     public User save(User user) {
         SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
         jdbcInsert.withTableName("userTest").usingGeneratedKeyColumns("userId");
