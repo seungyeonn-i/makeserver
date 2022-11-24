@@ -9,7 +9,9 @@ public interface ItemRepository {
 
     Optional<Item> findByStoreId(int storeId);
 
-    Optional<Item> findByItemPrice(int itemPrice);
+    List<Item> findByItemPrice(int itemPrice,int start, int end);
+
+    Optional<Item> findByItemId(int itemId);
 
     List<Item> findAll();
 

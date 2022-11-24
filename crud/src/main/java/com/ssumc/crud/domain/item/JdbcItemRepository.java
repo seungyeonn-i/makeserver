@@ -41,14 +41,22 @@ public class JdbcItemRepository implements ItemRepository {
 
     @Override
     public Optional<Item> findByStoreId(int storeId) {
-        return Optional.empty();
+        List<Item> result = jdbcTemplate.query("select * from Item where storeId = ? ", itemRowMapper(), storeId);
+
+        return Optional.ofNullable(result.get(storeId));
     }
 
     @Override
-    public Optional<Item> findByItemPrice(int itemPrice) {
-        return Optional.empty();
+    public List<Item> findByItemPrice(int itemPrice,int start, int end) {
+        return jdbcTemplate.query("select * from Item where itemPrice > ? and itemPrice < ? ", itemRowMapper(), start,end);
+
     }
 
+    @Override
+    public Optional<Item> findByItemId(int itemId) {
+        List<Item> result = jdbcTemplate.query("select * from Item where itemId = ?", itemRowMapper(), itemId);
+        return Optional.ofNullable(result.get(itemId));
+    }
 
 
     @Override
@@ -78,6 +86,7 @@ public class JdbcItemRepository implements ItemRepository {
             item.setItemPrice(rs.getInt("itemPrice"));
             item.setItemDetails(rs.getString("itemDetails"));
             item.setItemPhotoUrl(rs.getString("itemPhotoUrl"));
+            item.setStoreId(rs.getInt("storeId"));
             return item;
         };
     }

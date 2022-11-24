@@ -8,7 +8,11 @@ public interface ItemService {
 
     List<Item> sortByStore(int storeId);
 
-    List<Item> sortByPrice(int itemPrice);
+    List<Item> sortByPrice(int itemPrice, int start, int end);
+
+    Optional<Item> findOne(int itemId);
+
+    List<Item> findAll();
 
     void delete(Item item);
 }
