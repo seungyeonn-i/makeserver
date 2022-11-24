@@ -47,7 +47,7 @@ public class JdbcUserRepository implements UserRepository {
     }
 
     public Optional<User> findById(int userId) {
-        List<User> result = jdbcTemplate.query("select * from UserTest where id = ?", userRowMapper(), userId);
+        List<User> result = jdbcTemplate.query("select * from userTest where userId = ?", userRowMapper(), userId);
         return Optional.ofNullable(result.get(userId));
     }
 
@@ -71,6 +71,7 @@ public class JdbcUserRepository implements UserRepository {
                 user.setUserEmail(rs.getString("userEmail"));
                 user.setUserPhone(rs.getString("userPhone"));
                 user.setUserId(rs.getInt("userId"));
+                user.setPassword(rs.getString("password"));
 //            user.setUserStatus(rs.getC);
 //            user.setUserGrade(rs.getString("1"));
                 return user;

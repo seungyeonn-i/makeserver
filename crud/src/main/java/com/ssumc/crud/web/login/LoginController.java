@@ -17,6 +17,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.Optional;
 
 @Slf4j
 @Controller
@@ -39,7 +40,6 @@ public class LoginController {
         }
 
         User loginUser = loginService.login(form.getLoginEmail(), form.getPassword());
-        log.info("@here");
         if (loginUser == null) {
             result.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다");
             return "login/loginForm";

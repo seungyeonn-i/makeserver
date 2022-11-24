@@ -16,7 +16,9 @@ public class LoginService {
     public User login(String userEmail, String password) {
 
 
-        log.info(userRepository.findByUserEmail(userEmail).get().toString());
+//        log.info(userRepository.findByUserEmail(userEmail).get().toString());
+        //
+        log.info(userRepository.findAll().toString());
 
         return userRepository.findByUserEmail(userEmail)
                 .filter(m -> m.getPassword().equals(password))
