@@ -11,6 +11,7 @@ import javax.validation.constraints.NotBlank;
 public class Item {
 
     private int itemId;
+
     private int storeId;
 
     private String itemName;

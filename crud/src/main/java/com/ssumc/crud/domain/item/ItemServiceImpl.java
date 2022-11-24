@@ -1,10 +1,13 @@
 package com.ssumc.crud.domain.item;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ItemServiceImpl implements ItemService {
@@ -13,17 +16,23 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public int save(Item item) {
-        return 0;
+
+        log.info(item.toString());
+        itemRepository.save(item);
+        return item.getItemId();
     }
 
     @Override
-    public Optional<Item> sortByStore(int storeId) {
-        return Optional.empty();
+    public List<Item> sortByStore(int storeId) {
+        return itemRepository.findAllByStoreId(storeId);
+
+        // TODO 가격 순 sort
     }
 
     @Override
-    public Optional<Item> sortByPrice(int itemPrice) {
-        return Optional.empty();
+    public List<Item> sortByPrice(int itemPrice) {
+        return itemRepository.findAllByItemPrice(itemPrice);
+
     }
 
     @Override

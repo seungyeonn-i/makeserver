@@ -1,13 +1,14 @@
 package com.ssumc.crud.domain.item;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface ItemService {
     int save(Item item);
 
-    Optional<Item> sortByStore(int storeId);
+    List<Item> sortByStore(int storeId);
 
-    Optional<Item> sortByPrice(int itemPrice);
+    List<Item> sortByPrice(int itemPrice);
 
     void delete(Item item);
 }

@@ -33,7 +33,7 @@ public class SpringConfig {
         return new JdbcUserRepository(dataSource);
     }
 
-    //
+    //o
 //    @Bean
 //    public UserRepository userRepository() {
 ////        return new MemoryUserRepository();

@@ -25,10 +25,10 @@ public class UserController {
 
     private final UserService userService;
 
-    @Autowired
-    public UserController(UserServiceImpl userServiceImpl) {
-        this.userService = userServiceImpl;
-    }
+//    @Autowired
+//    public UserController(UserServiceImpl userServiceImpl) {
+//        this.userService = userServiceImpl;
+//    }
 
     @GetMapping(value = "/users/new")
     public String createForm(Model model) {
