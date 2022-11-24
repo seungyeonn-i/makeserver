@@ -58,6 +58,13 @@ public class JdbcItemRepository implements ItemRepository {
         return Optional.ofNullable(result.get(itemId));
     }
 
+    @Override
+    public Optional<Item> findByItemName(String itemName) {
+        return findAll().stream()
+                .filter(m -> m.getItemName().equals(itemName))
+                .findFirst();
+    }
+
 
     @Override
     public List<Item> findAll() {
@@ -82,6 +89,7 @@ public class JdbcItemRepository implements ItemRepository {
     private RowMapper<Item> itemRowMapper() {
         return (rs, rowNum) -> {
             Item item = new Item();
+            item.setItemId(rs.getInt("itemId"));
             item.setItemName(rs.getString("itemName"));
             item.setItemPrice(rs.getInt("itemPrice"));
             item.setItemDetails(rs.getString("itemDetails"));

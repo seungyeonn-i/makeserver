@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Optional;
+
 @Slf4j
 @Controller
 @RequiredArgsConstructor
@@ -31,14 +33,28 @@ public class ItemController {
 
     @PostMapping(value = "/items/findPrice")
     public String findByPrice(@ModelAttribute("price") Price price, RedirectAttributes redirectAttributes) {
-        log.info(itemService.sortByPrice(20000, price.getStart(), price.getEnd()).toString());
+        log.info(itemService.findByPrice(20000, price.getStart(), price.getEnd()).toString());
         return "redirect:/";
     }
 
     @Getter @Setter
-    class Price{
+    class Price {
 
         int start;
         int end;
     }
+
+    @PostMapping(value = "/items/findName")
+    public String findByName(@ModelAttribute("name") Name name, RedirectAttributes redirectAttributes) {
+        log.info(name.getName());
+        log.info(Optional.ofNullable(
+                itemService.findByItemName(name.getName())).toString());
+        return "redirect:/";
+    }
+
+    @Getter @Setter
+    class Name{
+        String name;
+    }
+
 }

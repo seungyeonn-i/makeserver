@@ -9,6 +9,8 @@ public interface ItemRepository {
 
     Optional<Item> findByStoreId(int storeId);
 
+    Optional<Item> findByItemName(String itemName);
+
     List<Item> findByItemPrice(int itemPrice,int start, int end);
 
     Optional<Item> findByItemId(int itemId);

@@ -6,9 +6,11 @@ import java.util.Optional;
 public interface ItemService {
     int save(Item item);
 
-    List<Item> sortByStore(int storeId);
+    List<Item> findByStore(int storeId);
 
-    List<Item> sortByPrice(int itemPrice, int start, int end);
+    List<Item> findByPrice(int itemPrice, int start, int end);
+
+    Optional<Item> findByItemName(String itemName);
 
     Optional<Item> findOne(int itemId);
 

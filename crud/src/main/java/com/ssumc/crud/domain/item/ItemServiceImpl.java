@@ -23,14 +23,14 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public List<Item> sortByStore(int storeId) {
+    public List<Item> findByStore(int storeId) {
         return itemRepository.findAllByStoreId(storeId);
 
         // TODO 가격 순 sort
     }
 
     @Override
-    public List<Item> sortByPrice(int itemPrice,int start, int end) {
+    public List<Item> findByPrice(int itemPrice, int start, int end) {
 //        return itemRepository.findAllByItemPrice(itemPrice);
         // TODO 가격 사이
         return itemRepository.findByItemPrice(itemPrice, start, end);
@@ -40,6 +40,12 @@ public class ItemServiceImpl implements ItemService {
     public Optional<Item> findOne(int itemId) {
         return itemRepository.findByItemId(itemId);
     }
+
+    @Override
+    public Optional<Item> findByItemName(String itemName) {
+        return itemRepository.findByItemName(itemName);
+    }
+
 
     @Override
     public List<Item> findAll() {
