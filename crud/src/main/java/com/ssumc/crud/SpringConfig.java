@@ -33,12 +33,6 @@ public class SpringConfig {
         return new JdbcUserRepository(dataSource);
     }
 
-    //o
-//    @Bean
-//    public UserRepository userRepository() {
-////        return new MemoryUserRepository();
-//        return new JpaUserRepository(em);
-//    }
     @Bean
     public ItemService itemService() {
         return new ItemServiceImpl(itemRepository());

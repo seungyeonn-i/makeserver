@@ -40,6 +40,7 @@ public class LoginController {
         }
 
         User loginUser = loginService.login(form.getLoginEmail(), form.getPassword());
+
         if (loginUser == null) {
             result.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다");
             return "login/loginForm";

@@ -1,13 +1,15 @@
 package com.ssumc.crud.domain.jwt;
 
-import io.jsonwebtoken.Jwts;
+
+import com.ssumc.crud.domain.jwt.config.BaseException;
 
 import java.util.Date;
 
-public class JwtService {
+public interface JwtService {
 
-    public String createJwt(int userId) {
-        Date now = new Date();
-        return Jwts.
-    }
+     String createJwt(int userId);
+
+     String getJwt();
+
+     int getUserId() throws BaseException;
 }
