@@ -4,7 +4,8 @@ import com.ssumc.crud.domain.item.ItemRepository;
 import com.ssumc.crud.domain.item.ItemService;
 import com.ssumc.crud.domain.item.ItemServiceImpl;
 import com.ssumc.crud.domain.item.JdbcItemRepository;
-import com.ssumc.crud.domain.login.LoginService;
+import com.ssumc.crud.domain.order.JdbcOrderRepository;
+import com.ssumc.crud.domain.order.OrderRepository;
 import com.ssumc.crud.domain.user.JdbcUserRepository;
 import com.ssumc.crud.domain.user.UserRepository;
 import com.ssumc.crud.domain.user.UserService;
@@ -41,6 +42,11 @@ public class SpringConfig {
     @Bean
     public ItemRepository itemRepository() {
         return new JdbcItemRepository(dataSource);
+    }
+
+    @Bean
+    public OrderRepository billRepository() {
+        return new JdbcOrderRepository(dataSource);
     }
 
 }

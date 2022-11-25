@@ -1,10 +1,9 @@
 package com.ssumc.crud.web.login;
 
-import com.ssumc.crud.SessionConst;
+import com.ssumc.crud.session.SessionConst;
 import com.ssumc.crud.domain.login.LoginService;
 import com.ssumc.crud.domain.user.User;
 import com.ssumc.crud.session.SessionManager;
-import com.ssumc.crud.web.login.LoginForm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -13,11 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.Optional;
 
 @Slf4j
 @Controller

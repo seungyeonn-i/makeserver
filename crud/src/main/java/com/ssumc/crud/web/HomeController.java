@@ -1,7 +1,7 @@
 package com.ssumc.crud.web;
 
 
-import com.ssumc.crud.SessionConst;
+import com.ssumc.crud.session.SessionConst;
 import com.ssumc.crud.domain.user.User;
 import com.ssumc.crud.domain.user.UserRepository;
 import com.ssumc.crud.session.SessionManager;

@@ -1,4 +1,4 @@
-package com.ssumc.crud;
+package com.ssumc.crud.web;
 
 import com.ssumc.crud.domain.user.User;
 import com.ssumc.crud.domain.user.UserRepository;
