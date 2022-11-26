@@ -10,7 +10,7 @@ public interface OrderRepository {
 
     Order save(Order order);
 
-    Optional<Order> findByBillId(int orderId);
+    Optional<Order> findByOrderId(int orderId);
 
     List<Order> findAllByUserId(int userId);
 
