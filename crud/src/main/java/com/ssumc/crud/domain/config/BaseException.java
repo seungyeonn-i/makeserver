@@ -1,4 +1,4 @@
-package com.ssumc.crud.domain.jwt.config;
+package com.ssumc.crud.domain.config;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

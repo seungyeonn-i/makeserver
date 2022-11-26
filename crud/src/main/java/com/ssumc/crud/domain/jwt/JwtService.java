@@ -1,9 +1,7 @@
 package com.ssumc.crud.domain.jwt;
 
 
-import com.ssumc.crud.domain.jwt.config.BaseException;
-
-import java.util.Date;
+import com.ssumc.crud.domain.config.BaseException;
 
 public interface JwtService {
 

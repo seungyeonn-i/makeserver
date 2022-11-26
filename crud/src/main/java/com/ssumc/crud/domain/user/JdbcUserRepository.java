@@ -1,5 +1,6 @@
 package com.ssumc.crud.domain.user;
 
+import com.ssumc.crud.web.user.UserReq;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -25,7 +26,7 @@ public class JdbcUserRepository implements UserRepository {
 
 
 
-    public User save(User user) {
+    public int save(UserReq user) {
         SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
         jdbcInsert.withTableName("userTest").usingGeneratedKeyColumns("userId");
         // UserTest가 맞는데 그거 하면 왜 안됨?
@@ -38,9 +39,9 @@ public class JdbcUserRepository implements UserRepository {
 
 
         Number key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameters));
-        user.setUserId(key.intValue());
+//        user.setUserId(key.intValue());
 
-        return user;
+        return key.intValue();
     }
 
     public Optional<User> findById(int userId) {
@@ -61,7 +62,7 @@ public class JdbcUserRepository implements UserRepository {
                 .findFirst();
     }
 
-    private RowMapper<User>userRowMapper() {
+    private RowMapper<User> userRowMapper() {
         return (rs, rowNum) -> {
                 User user = new User();
                 user.setUserName(rs.getString("userName"));

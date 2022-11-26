@@ -1,19 +1,16 @@
 package com.ssumc.crud.web.user;
 
+import com.ssumc.crud.domain.config.BaseException;
+import com.ssumc.crud.domain.config.BaseResponse;
 import com.ssumc.crud.domain.user.User;
 import com.ssumc.crud.domain.user.UserService;
-import com.ssumc.crud.domain.user.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -32,29 +29,34 @@ public class UserController {
 
     @GetMapping(value = "/users/new")
     public String createForm(Model model) {
-        model.addAttribute("user", new UserForm());
+        model.addAttribute("user", new UserReq());
 
         return "users/createUserForm";
     }
 
     @PostMapping(value = "/users/new")
-    public String create(@Validated @ModelAttribute("user") UserForm form, BindingResult result,RedirectAttributes redirectAttributes) {
+    public String createUser(@Validated @ModelAttribute("user") UserReq userReq, BindingResult result, RedirectAttributes redirectAttributes) throws BaseException {
         if (result.hasErrors()) {
             log.info("errors={}", result);
             return "users/createUserForm";
         }
-
-        User user = new User();
-        user.setUserName(form.getUserName());
-        user.setPassword(form.getPassword());
-        user.setUserPhone(form.getUserPhone());
-
-        user.setUserEmail(form.getUserEmail());
-        userService.join(user);
+        userService.join(userReq);
 
 //        redirectAttributes.addAttribute("user", user);
         return "redirect:/";
     }
+
+    @ResponseBody
+    @PostMapping("signUp")
+    public BaseResponse<UserRes> signUpUser(@RequestBody UserReq userReq) {
+        try {
+            UserRes userRes = userService.join(userReq);
+            return new BaseResponse<>(userRes);
+        } catch (BaseException e) {
+            return new BaseResponse<>((e.getStatus()));
+        }
+    }
+
 
     @GetMapping(value = "/users")
     public String list(Model model) {

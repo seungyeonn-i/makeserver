@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 @Getter @Setter
-public class UserForm {
+public class UserReq {
 
     @NotBlank(message = "이름을 입력해주세요.")
     private String userName;

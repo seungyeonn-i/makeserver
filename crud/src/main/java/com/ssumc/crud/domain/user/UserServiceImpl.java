@@ -1,11 +1,19 @@
 package com.ssumc.crud.domain.user;
 
+import com.ssumc.crud.domain.config.BaseException;
+import com.ssumc.crud.domain.config.BaseResponseStatus;
+import com.ssumc.crud.domain.jwt.AES128;
+import com.ssumc.crud.domain.jwt.config.secret.Secret;
+import com.ssumc.crud.web.user.UserReq;
+import com.ssumc.crud.web.user.UserRes;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
+import static com.ssumc.crud.domain.config.BaseResponseStatus.DATABASE_ERROR;
 
 //@Transactional
 @Service
@@ -23,12 +31,25 @@ public class UserServiceImpl implements UserService {
 //    }
 
 
-    public int join(User user) {
+    public UserRes join(UserReq userReq) throws BaseException {
 
 //        if (validatePasswordUser(user)) {
-            userRepository.save(user);
-            return user.getUserId();
-//        }
+        String pwd;
+
+        try {
+            // 비밀번호 암호화 하여 저장
+            pwd = new AES128(Secret.USER_INFO_PASSWORD_KEY).encrypt(userReq.getPassword());
+            userReq.setPassword(pwd);
+        } catch (Exception e) { // 암호화 실패했을 경우 에러
+            throw new BaseException(BaseResponseStatus.PASSWORD_DECRYPTION_ERROR);
+        }
+        try {
+            int saveId = userRepository.save(userReq);
+            return new UserRes(saveId);
+        } catch (Exception e) {
+            throw new BaseException(DATABASE_ERROR);
+        }
+
 //        return -1;
 
     }

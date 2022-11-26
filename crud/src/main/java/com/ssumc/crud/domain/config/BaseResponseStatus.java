@@ -1,4 +1,4 @@
-package com.ssumc.crud.domain.jwt.config;
+package com.ssumc.crud.domain.config;
 
 import lombok.Getter;
 
@@ -7,16 +7,26 @@ import lombok.Getter;
  */
 @Getter
 public enum BaseResponseStatus {
-    /**
-     * 1000 : 요청 성공
-     */
-    SUCCESS(true, 1000, "요청에 성공하였습니다."),
+
+//    SUCCESS(true, 200, "요청에 성공하였습니다."),
+    CREATED_SUCCESS(true, 201, "생성에 성공하였습니다."),
+
+    FOUND(true, 302, "리다이렉션"),
+
+    BAD_REQUEST(false, 400, "잘못된 요청입니다."),
+    UNAUTHORIZED(false, 401, "인증되지 않은 유저입니다."),
+    NOT_FOUND(false, 404, "요청 리소스가 서버에 존재하지 않습니다."),
+
+    INTERNAL_SERVER_ERROR(false, 500, "서버에 문제가 발생하였습니다."),
+    SERVICE_UNAVAILABLE(false,503,"서비스 이용 불가"),
 
 
     /**
      * 2000 : Request 오류
      */
     // Common
+    SUCCESS(true, 1000, "요청에 성공하였습니다."),
+
     REQUEST_ERROR(false, 2000, "입력값을 확인해주세요."),
     EMPTY_JWT(false, 2001, "JWT를 입력해주세요."),
     INVALID_JWT(false, 2002, "유효하지 않은 JWT입니다."),

@@ -1,7 +1,6 @@
 package com.ssumc.crud.domain.jwt;
 
-import com.ssumc.crud.domain.jwt.config.BaseException;
-import com.ssumc.crud.domain.jwt.config.BaseResponseStatus;
+import com.ssumc.crud.domain.config.BaseException;
 import com.ssumc.crud.domain.jwt.config.secret.Secret;
 import io.jsonwebtoken.*;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -10,8 +9,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
-import static com.ssumc.crud.domain.jwt.config.BaseResponseStatus.EMPTY_JWT;
-import static com.ssumc.crud.domain.jwt.config.BaseResponseStatus.INVALID_JWT;
+import static com.ssumc.crud.domain.config.BaseResponseStatus.EMPTY_JWT;
+import static com.ssumc.crud.domain.config.BaseResponseStatus.INVALID_JWT;
 
 public class JwtServiceImpl implements JwtService {
 
