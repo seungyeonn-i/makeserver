@@ -34,6 +34,7 @@ public class UserController {
         return "users/createUserForm";
     }
 
+
     @PostMapping(value = "/users/new")
     public String createUser(@Validated @ModelAttribute("user") UserReq userReq, BindingResult result, RedirectAttributes redirectAttributes) throws BaseException {
         if (result.hasErrors()) {

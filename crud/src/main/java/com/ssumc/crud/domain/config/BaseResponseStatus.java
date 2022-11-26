@@ -8,7 +8,7 @@ import lombok.Getter;
 @Getter
 public enum BaseResponseStatus {
 
-//    SUCCESS(true, 200, "요청에 성공하였습니다."),
+    SUCCESS(true, 200, "요청에 성공하였습니다."),
     CREATED_SUCCESS(true, 201, "생성에 성공하였습니다."),
 
     FOUND(true, 302, "리다이렉션"),
@@ -25,7 +25,7 @@ public enum BaseResponseStatus {
      * 2000 : Request 오류
      */
     // Common
-    SUCCESS(true, 1000, "요청에 성공하였습니다."),
+//    SUCCESS(true, 1000, "요청에 성공하였습니다."),
 
     REQUEST_ERROR(false, 2000, "입력값을 확인해주세요."),
     EMPTY_JWT(false, 2001, "JWT를 입력해주세요."),

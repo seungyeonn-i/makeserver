@@ -1,5 +1,7 @@
-package com.ssumc.crud.domain.item;
+package com.ssumc.crud.web.item;
 
+import com.ssumc.crud.domain.item.Item;
+import com.ssumc.crud.domain.item.ItemService;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
