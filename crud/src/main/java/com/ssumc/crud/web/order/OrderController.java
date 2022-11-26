@@ -1,5 +1,7 @@
-package com.ssumc.crud.domain.order;
+package com.ssumc.crud.web.order;
 
+import com.ssumc.crud.domain.order.Order;
+import com.ssumc.crud.domain.order.OrderService;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;

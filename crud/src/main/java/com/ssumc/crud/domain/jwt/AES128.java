@@ -42,13 +42,9 @@ public class AES128 {
         return new String(Base64.getEncoder().encode(encrypted));
     }
 
-    public String decrypt(String value)
-            throws NoSuchPaddingException, NoSuchAlgorithmException,
-            BadPaddingException, IllegalBlockSizeException,
-            InvalidAlgorithmParameterException, InvalidKeyException {
-
+    public String decrypt(String value) throws NoSuchPaddingException, NoSuchAlgorithmException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException, InvalidKeyException {
         Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
-        cipher.init(Cipher.ENCRYPT_MODE, keySpec, new IvParameterSpec(ips.getBytes()));
+        cipher.init(Cipher.DECRYPT_MODE, keySpec, new IvParameterSpec(ips.getBytes(UTF_8)));
         byte[] decrypted = Base64.getDecoder().decode(value.getBytes());
         return new String(cipher.doFinal(decrypted), UTF_8);
     }

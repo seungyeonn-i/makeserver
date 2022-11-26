@@ -1,5 +1,7 @@
 package com.ssumc.crud.web.login;
 
+import com.ssumc.crud.domain.config.BaseException;
+import com.ssumc.crud.domain.config.BaseResponse;
 import com.ssumc.crud.session.SessionConst;
 import com.ssumc.crud.domain.login.LoginService;
 import com.ssumc.crud.domain.user.User;
@@ -8,9 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -28,7 +28,7 @@ public class LoginController {
         return "login/loginForm";
     }
 
-    @PostMapping("/login")
+//    @PostMapping("/login")
     public String login(@ModelAttribute LoginForm form, BindingResult result, HttpServletRequest request) {
 
         if (result.hasErrors()) {
@@ -47,6 +47,21 @@ public class LoginController {
 
         return "redirect:/";
     }
+
+    @ResponseBody
+    @PostMapping("/login")
+    public BaseResponse<LoginRes> login(@RequestBody LoginReq loginReq) {
+        try {
+            LoginRes loginRes = loginService.login(loginReq);
+            return new BaseResponse<>(loginRes);
+        } catch (BaseException e) {
+            return new BaseResponse<>(e.getStatus());
+        }
+    }
+
+
+
+
 
     @PostMapping("/logout")
     public String logout(HttpServletRequest request) {
