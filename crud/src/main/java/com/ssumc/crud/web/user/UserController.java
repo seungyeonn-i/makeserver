@@ -48,7 +48,7 @@ public class UserController {
     }
 
     @ResponseBody
-    @PostMapping("signUp")
+    @PostMapping("/signUp")
     public BaseResponse<UserRes> signUpUser(@RequestBody UserReq userReq) {
         try {
             UserRes userRes = userService.join(userReq);
@@ -66,6 +66,9 @@ public class UserController {
         return "users/userList";
     }
 
-
-
+    @ResponseBody
+    @PostMapping(value = "/admin/users")
+    public BaseResponse<List<UserRes>> userList(@RequestBody UserReq userReq) {
+        return BaseResponse < List < UserRes >>;
+    }
 }

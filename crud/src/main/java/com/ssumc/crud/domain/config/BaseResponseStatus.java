@@ -11,6 +11,7 @@ public enum BaseResponseStatus {
     SUCCESS(true, 200, "요청에 성공하였습니다."),
     CREATED_SUCCESS(true, 201, "생성에 성공하였습니다."),
 
+
     FOUND(true, 302, "리다이렉션"),
 
     BAD_REQUEST(false, 400, "잘못된 요청입니다."),
