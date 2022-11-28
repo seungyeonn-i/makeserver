@@ -4,6 +4,7 @@ import com.ssumc.crud.domain.config.BaseException;
 import com.ssumc.crud.domain.config.BaseResponseStatus;
 import com.ssumc.crud.domain.jwt.AES128;
 import com.ssumc.crud.domain.jwt.config.secret.Secret;
+import com.ssumc.crud.web.user.GetUserRes;
 import com.ssumc.crud.web.user.UserReq;
 import com.ssumc.crud.web.user.UserRes;
 import lombok.RequiredArgsConstructor;
@@ -58,7 +59,7 @@ public class UserServiceImpl implements UserService {
         return user.getPassword().contains("!");
     }
 
-    public  List<User> findUsers() {
+    public  List<GetUserRes> findUsers() {
         return userRepository.findAll();
     }
 

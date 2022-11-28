@@ -1,6 +1,8 @@
 package com.ssumc.crud.domain.user;
 
+import com.ssumc.crud.web.user.GetUserRes;
 import com.ssumc.crud.web.user.UserReq;
+import com.ssumc.crud.web.user.UserRes;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -9,6 +11,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import javax.swing.text.html.Option;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,16 +53,24 @@ public class JdbcUserRepository implements UserRepository {
     }
 
 
-    public List<User> findAll() {
+    public List<GetUserRes> findAll() {
 
-        return jdbcTemplate.query("select * from userTest", userRowMapper());
-
+        return jdbcTemplate.query("select * from userTest",
+                (rs, rowNum) -> new GetUserRes(
+                        rs.getInt("userId"),
+                        rs.getString("userEmail"),
+                        rs.getString("userName")
+                ));
     }
 
     public Optional<User> findByUserEmail(String userEmail) {
-        return findAll().stream()
+        return jdbcTemplate.query("select * from userTest", userRowMapper()).stream()
                 .filter(m -> m.getUserEmail().equals(userEmail))
                 .findFirst();
+//        return new Optional.ofNullable(UserRes);
+//        return findAll().stream()
+//                .filter(m -> m.getUserEmail().equals(userEmail))
+//                .findFirst();
     }
 
     private RowMapper<User> userRowMapper() {

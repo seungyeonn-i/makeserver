@@ -58,17 +58,20 @@ public class UserController {
         }
     }
 
-
-    @GetMapping(value = "/users")
-    public String list(Model model) {
-        List<User> users = userService.findUsers();
-        model.addAttribute("users", users);
-        return "users/userList";
-    }
+//
+//    @GetMapping(value = "/users")
+//    public String list(Model model) {
+//        List<GetUserRes> users = userService.findUsers();
+//        model.addAttribute("users", users);
+//        return "users/userList";
+//    }
 
     @ResponseBody
-    @PostMapping(value = "/admin/users")
-    public BaseResponse<List<UserRes>> userList(@RequestBody UserReq userReq) {
-        return BaseResponse < List < UserRes >>;
+    @GetMapping(value = "/admin/users")
+    public BaseResponse<List<GetUserRes>> userList() {
+
+        List<GetUserRes> users = userService.findUsers();
+        return new BaseResponse<>(users);
+
     }
 }

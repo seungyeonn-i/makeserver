@@ -1,7 +1,9 @@
 package com.ssumc.crud.domain.user;
 
 import com.ssumc.crud.domain.user.User;
+import com.ssumc.crud.web.user.GetUserRes;
 import com.ssumc.crud.web.user.UserReq;
+import com.ssumc.crud.web.user.UserRes;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,6 +18,6 @@ public interface UserRepository {
 
     Optional<User> findByUserEmail(String userEmail);
 
-    List<User> findAll();
+    List<GetUserRes> findAll();
 
 }
