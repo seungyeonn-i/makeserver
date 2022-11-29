@@ -38,6 +38,7 @@ out/
 
 ### applicatioin-security.properties ###
 application-aws.properties
+application-oauth.properties
 
 
 !**/src/main/java/com/ssumc/crud/domain/jwt/config/secret

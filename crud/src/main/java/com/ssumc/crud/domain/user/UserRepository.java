@@ -14,6 +14,8 @@ import java.util.Optional;
 public interface UserRepository {
     int save(UserReq userReq);
 
+//    int save(com.ssumc.crud.oauth.User user);
+
     Optional<User> findById(int userId);
 
     Optional<User> findByUserEmail(String userEmail);
