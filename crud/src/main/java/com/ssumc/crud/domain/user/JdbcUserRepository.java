@@ -28,7 +28,6 @@ public class JdbcUserRepository implements UserRepository {
     }
 
 
-
     public int save(UserReq user) {
         SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
         jdbcInsert.withTableName("userTest").usingGeneratedKeyColumns("userId");
@@ -46,6 +45,7 @@ public class JdbcUserRepository implements UserRepository {
 
         return key.intValue();
     }
+
 
     public Optional<User> findById(int userId) {
         List<User> result = jdbcTemplate.query("select * from userTest where userId = ?", userRowMapper(), userId);
