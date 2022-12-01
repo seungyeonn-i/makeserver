@@ -18,6 +18,7 @@ public class AuthToken {
 
     private static final String AUTHORITIES_KEY = "role";
 
+    // Constructors
     AuthToken(String id, Date expiry, Key key) {
         this.key = key;
         this.token = createAuthToken(id, expiry);
@@ -35,6 +36,7 @@ public class AuthToken {
                 .compact();
     }
 
+    // role Data 추가된 claim
     private String createAuthToken(String id, String role, Date expiry) {
         return Jwts.builder()
                 .setSubject(id)
