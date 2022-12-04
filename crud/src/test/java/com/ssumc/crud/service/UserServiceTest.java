@@ -17,7 +17,7 @@ public class UserServiceTest {
     @BeforeEach
     public void beforeEach() {
         userRepository = new MemoryUserRepository();
-        userService = new UserServiceImpl(userRepository);
+//        userService = new UserServiceImpl(userRepository);
     }
 
     @AfterEach
@@ -31,7 +31,7 @@ public class UserServiceTest {
         user.setUserName("user1");
         user.setUserId(3);
 
-        int savedId = userService.join(user);
+//        int savedId = userService.join(user);
 
         User findUser = userRepository.findById(3).get();
         assertEquals(user.getUserName(), findUser.getUserName());

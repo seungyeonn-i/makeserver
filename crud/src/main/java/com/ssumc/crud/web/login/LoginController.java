@@ -8,12 +8,14 @@ import com.ssumc.crud.domain.user.User;
 import com.ssumc.crud.session.SessionManager;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.awt.*;
 
 @Slf4j
 @Controller
@@ -28,7 +30,7 @@ public class LoginController {
         return "login/loginForm";
     }
 
-//    @PostMapping("/login")
+    @PostMapping("/login")
     public String login(@ModelAttribute LoginForm form, BindingResult result, HttpServletRequest request) {
 
         if (result.hasErrors()) {
@@ -49,8 +51,17 @@ public class LoginController {
     }
 
     @ResponseBody
-    @PostMapping("/login")
-    public BaseResponse<LoginRes> login(@RequestBody LoginReq loginReq) {
+//    @PostMapping(value = "/login",consumes = MediaType.APPLICATION_JSON_VALUE)
+    public BaseResponse<LoginRes> loginJson(@RequestBody LoginReq loginReq) {
+        try {
+            LoginRes loginRes = loginService.login(loginReq);
+            return new BaseResponse<>(loginRes);
+        } catch (BaseException e) {
+            return new BaseResponse<>(e.getStatus());
+        }
+    }    @ResponseBody
+//    @PostMapping(value = "/login",consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public BaseResponse<LoginRes> loginForm( LoginReq loginReq) {
         try {
             LoginRes loginRes = loginService.login(loginReq);
             return new BaseResponse<>(loginRes);
