@@ -37,63 +37,19 @@ public class ItemController {
         return "redirect:/";
     }
 
-//    @PostMapping(value = "/items/findPrice")
-    public String findByPrice(@ModelAttribute("price") Price price, RedirectAttributes redirectAttributes) {
-        log.info(itemService.findByPrice(20000, price.getStart(), price.getEnd()).toString());
-        return "redirect:/";
-    }
-
-    @Getter @Setter
-    class Price {
-
-        int start;
-        int end;
-    }
 
     @ResponseBody
-    @GetMapping (value = "/items/findPrice")
-    public BaseResponse<List<Item>> findByPriceV2(@ModelAttribute("price") PriceV2 price) {
-        List<Item> byPrice = itemService.findByPrice(20000, price.getStart(), price.getEnd());
+    @PostMapping (value = "/items/findPrice")
+    public BaseResponse<List<Item>> findByPriceV3(int start, int end) {
+        List<Item> byPrice = itemService.findByPrice(20000, start, end);
 
         return new BaseResponse<>(byPrice);
     }
 
-    @Getter @Setter
-    class PriceV2 {
-
-        int start;
-        int end;
-    }
-
-//    @PostMapping(value = "/items/findName")
-    public String findByName(@ModelAttribute("name") Name name, RedirectAttributes redirectAttributes) {
-        log.info(name.getName());
-        log.info(Optional.ofNullable(
-                itemService.findByItemName(name.getName())).toString());
-        return "redirect:/";
-    }
-
-    @Getter @Setter
-    class Name{
-        String name;
-    }
-
-    @ResponseBody
-//    @PostMapping(value = "/items/findName")
-    public BaseResponse<Item> findByNameV2(@ModelAttribute("name") Name name, RedirectAttributes redirectAttributes) {
-        Item byItemName = itemService.findByItemName(name.getName()).get();
-
-        return new BaseResponse<>(byItemName);
-    }
-
-    @Getter @Setter
-    class NameV2{
-        String name;
-    }
 
     @ResponseBody
     @PostMapping(value = "/items/findName")
-    public BaseResponse<Item> findByNameV3(String name, RedirectAttributes redirectAttributes) {
+    public BaseResponse<Item> findByNameV3(String name) {
         Item byItemName = itemService.findByItemName(name).get();
 
         return new BaseResponse<>(byItemName);
