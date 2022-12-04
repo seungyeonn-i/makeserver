@@ -30,6 +30,9 @@ public class LoginController {
         return "login/loginForm";
     }
 
+    /**
+     * 웹 연결 OK, BindingResult 적용 안됨
+     */
     @PostMapping("/login")
     public String login(@ModelAttribute LoginForm form, BindingResult result, HttpServletRequest request) {
 
@@ -50,8 +53,12 @@ public class LoginController {
         return "redirect:/";
     }
 
+    /**
+     * API
+     */
+
     @ResponseBody
-//    @PostMapping(value = "/login",consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/login",consumes = MediaType.APPLICATION_JSON_VALUE)
     public BaseResponse<LoginRes> loginJson(@RequestBody LoginReq loginReq) {
         try {
             LoginRes loginRes = loginService.login(loginReq);
@@ -60,7 +67,7 @@ public class LoginController {
             return new BaseResponse<>(e.getStatus());
         }
     }    @ResponseBody
-//    @PostMapping(value = "/login",consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @PostMapping(value = "/login",consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public BaseResponse<LoginRes> loginForm( LoginReq loginReq) {
         try {
             LoginRes loginRes = loginService.login(loginReq);
