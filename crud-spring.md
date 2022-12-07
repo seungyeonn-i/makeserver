@@ -9,7 +9,6 @@
     
         public TokenValidFailedException() {
             super("Failed to generate Token.");
-        }
     
         private TokenValidFailedException(String message) {
             super(message); // super 클래스 (Runtime Exception 에 전달)
@@ -37,11 +36,11 @@
         3. 서명(Signature)
             1. Hash (헤더의 인코딩 값 + 정보의 인코딩 값)
                 
-                ```bash
                 HMACSHA256(
                   base64UrlEncode(header) + "." + // header incoding value
                   base64UrlEncode(payload),      // payload incoding value
                   secret).                      // 주어진 비밀키로 해쉬 
                 ```
                 
-        4. 이후 Header,Payload,Signautre 값을 ‘.’ 을 중간자로 합쳐주면 하나의 토큰 완성
+		4. 이후 Header,Payload,Signautre 값을 ‘.’ 을 중간자로 합쳐주면 하나의 토큰 완성
+
